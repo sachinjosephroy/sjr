@@ -17,7 +17,17 @@ module.exports = {
     removeMessage,
     addUser,
     findAllUsers,
-    findUserByUsername
+    findUserByUsername,
+    addContact,
+    findAllContacts
+}
+
+async function addContact(contact) {
+    return await db("contacts").insert(contact, ["id", "name"]);
+}
+
+function findAllContacts() {
+    return db("contacts");
 }
 
 async function addUser(user) {
