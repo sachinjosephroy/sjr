@@ -5,7 +5,9 @@ const cors = require('cors');
 const lessonsRouter = require('../Routes/lessons-routes');
 const messagesRouter = require('../Routes/messages-routes');
 const usersRouter = require('../Routes/users-routes');
+const contactsRouter = require('../Routes/contacts-routes');
 const authRouter = require('../auth/auth-routes');
+const nonauthRouter = require('../Routes/nonauth-routes');
 const restricted = require('../auth/restricted-middleware');
 /* const jwt = require('jsonwebtoken'); */
 
@@ -17,9 +19,11 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/api/auth', authRouter);
+server.use('/api/other', nonauthRouter);
 server.use('/api/lessons', restricted, lessonsRouter);
 server.use('/api/messages', restricted, messagesRouter);
 server.use('/api/users', restricted, usersRouter);
+server.use('/api/contacts', restricted, contactsRouter);
 
 /* function restricted(req, res, next) {
     if (!req.headers.authorization) {

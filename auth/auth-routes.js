@@ -81,24 +81,4 @@ router.get('/logout', (req, res) => {
     }
 });
 
-router.post('/contact', (req, res) => {
-    Lessons.addContact(req.body)
-        .then(contact => {
-            res.status(201).json(contact)
-        })
-        .catch(error => {
-            res.status(500).json({ message: 'Cannot add contact' });
-        });
-});
-
-router.get('/contacts', (req, res) => {
-    Lessons.findAllContacts()
-        .then(contacts => {
-            res.status(200).json(contacts)
-        })
-        .catch(error => {
-            res.status(500).json({ message: "Unable to retrieve contacts" });
-        });
-});
-
 module.exports = router;
